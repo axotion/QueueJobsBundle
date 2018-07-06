@@ -17,7 +17,9 @@
     "symfony/event-dispatcher" : "^3.4"
   },
   "autoload": {
-    "psr-4": { "Evilnet\\QueueJobsBundle\\": "" }
+    "psr-4": {
+      "Evilnet\\QueueJobsBundle\\": ""
+    }
   },
   
   "repositories" : [{
