@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kamilfronczak
- * Date: 05.07.2018
- * Time: 23:21
- */
 
-namespace QueueJobsBundle\Dispatcher\Serializers;
+namespace Evilnet\QueueJobsBundle\Dispatcher\Serializers;
 
-use Evilnet\Dispatcher\DispatchableInterface;
+use Evilnet\QueueJobsBundle\Dispatcher\DispatchableInterface;
 
 interface SerializerInterface
 {

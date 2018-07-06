@@ -1,6 +1,6 @@
 <?php
 
-namespace QueueJobsBundle\QueueAdapter;
+namespace Evilnet\QueueJobsBundle\QueueAdapter;
 
 
 interface QueueAdapterInterface

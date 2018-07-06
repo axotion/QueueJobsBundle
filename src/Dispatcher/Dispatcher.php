@@ -6,10 +6,10 @@
  * Time: 23:26
  */
 
-namespace QueueJobsBundle\Dispatcher;
+namespace  Evilnet\QueueJobsBundle\Dispatcher;
 
-use Evilnet\QueueAdapter\QueueAdapterInterface;
-use Evilnet\Dispatcher\Serializers\SerializerInterface;
+use Evilnet\QueueJobsBundle\QueueAdapter\QueueAdapterInterface;
+use Evilnet\QueueJobsBundle\Dispatcher\Serializers\SerializerInterface;
 
 class Dispatcher implements DispatcherInterface
 {

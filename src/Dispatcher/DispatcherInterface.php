@@ -6,7 +6,7 @@
  * Time: 23:51
  */
 
-namespace QueueJobsBundle\Dispatcher;
+namespace  Evilnet\QueueJobsBundle\Dispatcher;
 
 interface DispatcherInterface
 {

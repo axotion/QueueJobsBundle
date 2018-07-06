@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kamilfronczak
- * Date: 06.07.2018
- * Time: 00:24
- */
 
-namespace QueueJobsBundle\ExampleJob;
+namespace Evilnet\QueueJobsBundle\ExampleJob;
 
 
 use Evilnet\Dispatcher\DispatchableInterface;

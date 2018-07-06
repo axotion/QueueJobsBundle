@@ -1,6 +1,6 @@
 <?php
 
-namespace QueueJobsBundle\QueueJobsBundle\DependencyInjection;
+namespace Evilnet\QueueJobsBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

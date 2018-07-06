@@ -6,10 +6,9 @@
  * Time: 23:44
  */
 
-namespace QueueJobsBundle\Worker\Unserializers;
+namespace  Evilnet\QueueJobsBundle\Worker\Unserializers;
 
-
-use ddd\Dispatcher\DispatchableInterface;
+use Evilnet\QueueJobsBundle\Dispatcher\DispatchableInterface;
 
 interface UnserializeInterface
 {

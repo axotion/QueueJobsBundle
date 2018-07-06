@@ -6,9 +6,9 @@
  * Time: 23:23
  */
 
-namespace QueueJobsBundle\Dispatcher\Serializers;
+namespace Evilnet\QueueJobsBundle\Dispatcher\Serializers;
 
-use Evilnet\Dispatcher\DispatchableInterface;
+use Evilnet\QueueJobsBundle\Dispatcher\DispatchableInterface;
 
 class DefaultSerializer implements SerializerInterface
 {

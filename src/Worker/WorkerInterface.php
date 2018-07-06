@@ -6,7 +6,7 @@
  * Time: 23:38
  */
 
-namespace QueueJobsBundle\Worker;
+namespace Evilnet\QueueJobsBundle\Worker;
 
 
 interface WorkerInterface
