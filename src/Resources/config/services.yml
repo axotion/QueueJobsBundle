@@ -9,15 +9,6 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: false
 
-    # makes classes in src/QueueJobsBundle available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
-    QueueJobsBundle\:
-        resource: '../../src/QueueJobsBundle/*'
-        # you can exclude directories or files
-        # but if a service is unused, it's removed anyway
-        exclude: '../../src/QueueJobsBundle/{Entity,Repository,Tests}'
-
-
     # add more services, or override services that need manual wiring
     # QueueJobsBundle\Service\ExampleService:
     #     arguments:
