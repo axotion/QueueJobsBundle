@@ -21,7 +21,7 @@
       "Evilnet\\QueueJobsBundle\\": "evilnet/QueueJobsBundle/src/"
     }
   },
-  "target-dir" : "evilnet/QueueJobsBundle",
+  
   "repositories" : [{
   }],
   "extra" : {
