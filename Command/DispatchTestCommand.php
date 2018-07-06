@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kamilfronczak
- * Date: 06.07.2018
- * Time: 02:57
- */
 
-namespace ddd\Command;
+namespace Evilnet\Command;
 
 
 use ddd\Dispatcher\DispatcherInterface;

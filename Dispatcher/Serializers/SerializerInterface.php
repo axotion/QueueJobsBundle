@@ -6,9 +6,9 @@
  * Time: 23:21
  */
 
-namespace ddd\Dispatcher\Serializers;
+namespace Evilnet\Dispatcher\Serializers;
 
-use ddd\Dispatcher\DispatchableInterface;
+use Evilnet\Dispatcher\DispatchableInterface;
 
 interface SerializerInterface
 {

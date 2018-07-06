@@ -1,6 +1,6 @@
 <?php
 
-namespace evilnet\QueueJobsBundle\DependencyInjection;
+namespace Evilnet\QueueJobsBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

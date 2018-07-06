@@ -6,11 +6,11 @@
  * Time: 23:41
  */
 
-namespace ddd\Worker;
+namespace Evilnet\Worker;
 
-use ddd\Dispatcher\DispatchableInterface;
-use ddd\QueueAdapter\QueueAdapterInterface;
-use ddd\Worker\Unserializers\UnserializeInterface;
+use Evilnet\Dispatcher\DispatchableInterface;
+use Evilnet\QueueAdapter\QueueAdapterInterface;
+use Evilnet\Worker\Unserializers\UnserializeInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 

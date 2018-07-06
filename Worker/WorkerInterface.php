@@ -6,7 +6,7 @@
  * Time: 23:38
  */
 
-namespace ddd\Worker;
+namespace Evilnet\Worker;
 
 
 interface WorkerInterface

@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kamilfronczak
- * Date: 05.07.2018
- * Time: 23:30
- */
 
-namespace ddd\QueueAdapter;
+namespace Evilnet\QueueAdapter;
 
 
 interface QueueAdapterInterface

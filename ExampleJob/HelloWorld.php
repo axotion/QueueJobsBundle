@@ -6,10 +6,10 @@
  * Time: 00:24
  */
 
-namespace ddd\ExampleJob;
+namespace Evilnet\ExampleJob;
 
 
-use ddd\Dispatcher\DispatchableInterface;
+use Evilnet\Dispatcher\DispatchableInterface;
 
 class HelloWorld implements DispatchableInterface
 {

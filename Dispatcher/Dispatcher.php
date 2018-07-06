@@ -6,10 +6,10 @@
  * Time: 23:26
  */
 
-namespace ddd\Dispatcher;
+namespace Evilnet\Dispatcher;
 
-use ddd\QueueAdapter\QueueAdapterInterface;
-use ddd\Dispatcher\Serializers\SerializerInterface;
+use Evilnet\QueueAdapter\QueueAdapterInterface;
+use Evilnet\Dispatcher\Serializers\SerializerInterface;
 
 class Dispatcher implements DispatcherInterface
 {

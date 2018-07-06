@@ -6,7 +6,7 @@
  * Time: 23:51
  */
 
-namespace ddd\Dispatcher;
+namespace Evilnet\Dispatcher;
 
 interface DispatcherInterface
 {
