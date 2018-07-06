@@ -6,7 +6,7 @@
  * Time: 23:23
  */
 
-namespace Evilnet\Dispatcher\Serializers;
+namespace QueueJobsBundle\Dispatcher\Serializers;
 
 use Evilnet\Dispatcher\DispatchableInterface;
 

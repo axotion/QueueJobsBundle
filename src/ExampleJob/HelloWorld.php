@@ -6,7 +6,7 @@
  * Time: 00:24
  */
 
-namespace Evilnet\ExampleJob;
+namespace QueueJobsBundle\ExampleJob;
 
 
 use Evilnet\Dispatcher\DispatchableInterface;

@@ -6,7 +6,7 @@
  * Time: 23:41
  */
 
-namespace Evilnet\Worker;
+namespace QueueJobsBundle\Worker;
 
 use Evilnet\Dispatcher\DispatchableInterface;
 use Evilnet\QueueAdapter\QueueAdapterInterface;

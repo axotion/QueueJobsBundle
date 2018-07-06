@@ -1,6 +1,6 @@
 <?php
 
-namespace Evilnet\QueueAdapter;
+namespace QueueJobsBundle\QueueAdapter;
 
 use Predis\Collection\Iterator;
 use Predis\Client;

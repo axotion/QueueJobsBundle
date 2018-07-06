@@ -1,8 +1,8 @@
 <?php
 
-namespace Evilnet\Command;
+namespace QueueJobsBundle\Command;
 
-use Evilnet\Worker\WorkerInterface;
+use QueueJobsBundle\Worker\WorkerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

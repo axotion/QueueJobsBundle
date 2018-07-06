@@ -1,10 +1,10 @@
 <?php
 
-namespace Evilnet\Command;
+namespace QueueJobsBundle\Command;
 
 
-use ddd\Dispatcher\DispatcherInterface;
-use ddd\ExampleJob\HelloWorld;
+use QueueJobsBundle\Dispatcher\DispatcherInterface;
+use QueueJobsBundle\ExampleJob\HelloWorld;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

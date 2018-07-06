@@ -6,7 +6,7 @@
  * Time: 23:44
  */
 
-namespace ddd\Worker\Unserializers;
+namespace QueueJobsBundle\Worker\Unserializers;
 
 
 use ddd\Dispatcher\DispatchableInterface;

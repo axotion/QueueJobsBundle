@@ -1,6 +1,6 @@
 <?php
 
-namespace Evilnet\QueueJobsBundle;
+namespace QueueJobsBundle\QueueJobsBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
