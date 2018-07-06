@@ -55,11 +55,12 @@ class Worker implements WorkerInterface
     protected function execute(DispatchableInterface $dispatchable, int $retry, string $serialized_job, string $queue) : bool
     {
         try {
+            echo "Proccessing: ".$dispatchable->getName()." \n";
             $dispatchable->execute();
             return true;
             // TODO: Universal Exception for Jobs
         } catch (\ErrorException $errorException) {
-            echo ("Job failed... I will try again. Error message: ".$errorException->getMessage()." \n");
+            echo "Job failed... I will try again. Error message: ".$errorException->getMessage()." \n";
         }
     }
 
