@@ -1,0 +1,56 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: false
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: false
+        # this means you cannot fetch services directly from the container via $container->get()
+        # if you need to do this, you can override this setting on individual services
+        public: false
+
+    # makes classes in src/QueueJobsBundle available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    QueueJobsBundle\:
+        resource: '../../src/QueueJobsBundle/*'
+        # you can exclude directories or files
+        # but if a service is unused, it's removed anyway
+        exclude: '../../src/QueueJobsBundle/{Entity,Repository,Tests}'
+
+
+    # add more services, or override services that need manual wiring
+    # QueueJobsBundle\Service\ExampleService:
+    #     arguments:
+    #         $someArgument: 'some_value'
+
+    jobs.driver.interface:
+        class: QueueJobsBundle\QueueAdapter\RedisAdapter
+        arguments:
+            - '%queue_redis_ip%'
+            - '%queue_redis_port%'
+
+    jobs.serializer.interface:
+        class: QueueJobsBundle\Dispatcher\Serializers\DefaultSerializer
+
+    jobs.unserializer.interface:
+        class: QueueJobsBundle\Worker\Unserializers\DefaultUnserializer
+
+    jobs.worker.interface:
+        class: QueueJobsBundle\Worker\Worker
+        arguments: ['@jobs.driver.interface', '@jobs.unserializer.interface', '@event_dispatcher']
+
+    jobs.dispatcher.interface:
+        class: QueueJobsBundle\Dispatcher\Dispatcher
+        arguments: ['@jobs.serializer.interface', '@jobs.driver.interface', '%default_queue_name%']
+
+    jobs.command.work_command:
+        class: QueueJobsBundle\Command\WorkerCommand
+        arguments: ['QueueJobsBundle\Command', '@jobs.worker.interface']
+        tags:
+            - { name: console.command, command: 'worker:start' }
+
+    jobs.command.dispatch_test_command:
+        class: QueueJobsBundle\Command\DispatchTestCommand
+        arguments: ['QueueJobsBundle\Command', '@jobs.dispatcher.interface']
+        tags:
+            - { name: console.command, command: 'dispatch:test' }
