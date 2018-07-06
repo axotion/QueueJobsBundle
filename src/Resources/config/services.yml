@@ -36,12 +36,12 @@ services:
 
     jobs.command.work_command:
         class: QueueJobsBundle\Command\WorkerCommand
-        arguments: ['QueueJobsBundle\Command', '@jobs.worker.interface']
+        arguments: ['Evilnet\QueueJobsBundle\Command', '@jobs.worker.interface']
         tags:
             - { name: console.command, command: 'worker:start' }
 
     jobs.command.dispatch_test_command:
         class: QueueJobsBundle\Command\DispatchTestCommand
-        arguments: ['QueueJobsBundle\Command', '@jobs.dispatcher.interface']
+        arguments: ['Evilnet\QueueJobsBundle\Command', '@jobs.dispatcher.interface']
         tags:
             - { name: console.command, command: 'dispatch:test' }
