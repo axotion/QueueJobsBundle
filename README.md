@@ -105,7 +105,7 @@ class ExampleService
 And to be honest... That's all!
 
 
-#TODO BY PRIORITY
+## TODO BY PRIORITY
 
 - Tests
 - Better configuration for Bundle where you can choose adapter etc.
