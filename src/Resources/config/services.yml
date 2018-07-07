@@ -29,20 +29,20 @@ services:
 
     queue.worker.interface:
         class: Evilnet\QueueJobsBundle\Worker\Worker
-        arguments: ['@jobs.driver.interface', '@jobs.unserializer.interface', '@event_dispatcher']
+        arguments: ['@queue.driver.interface', '@queue.unserializer.interface', '@event_dispatcher']
 
     queue.dispatcher.interface:
         class: Evilnet\QueueJobsBundle\Dispatcher\Dispatcher
-        arguments: ['@jobs.serializer.interface', '@jobs.driver.interface', '%default_queue_name%']
+        arguments: ['@queue.serializer.interface', '@queue.driver.interface', '%default_queue_name%']
 
     queue.command.work_command:
         class: Evilnet\QueueJobsBundle\Command\WorkerCommand
-        arguments: ['Evilnet\QueueJobsBundle\Command', '@jobs.worker.interface']
+        arguments: ['Evilnet\QueueJobsBundle\Command', '@queue.worker.interface']
         tags:
             - { name: console.command, command: 'worker:start' }
 
     queue.command.dispatch_test_command:
         class: Evilnet\QueueJobsBundle\Command\DispatchTestCommand
-        arguments: ['Evilnet\QueueJobsBundle\Command', '@jobs.dispatcher.interface']
+        arguments: ['Evilnet\QueueJobsBundle\Command', '@queue.dispatcher.interface']
         tags:
             - { name: console.command, command: 'dispatch:test' }
