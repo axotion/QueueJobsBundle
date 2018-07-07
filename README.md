@@ -6,7 +6,7 @@ Jobs system like in Laravel now in Symfony 3.x!
 
 Are you tired of fancy rabbitmq configurations? Would you like such a simplicity of work as in Laravel? That's what this package is for! I created it for the ecommerce project to process simple tasks, but it may also be useful to you
 
-##Install
+## Install
 
 ```
 composer require evilnet/queue-jobs-bundle
