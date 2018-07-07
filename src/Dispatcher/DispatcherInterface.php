@@ -10,5 +10,5 @@ namespace  Evilnet\QueueJobsBundle\Dispatcher;
 
 interface DispatcherInterface
 {
-    public function dispatch(DispatchableInterface $dispatchable, string $queue = 'default'): void;
+    public function dispatch(DispatchableInterface $dispatchable, string $queue): void;
 }

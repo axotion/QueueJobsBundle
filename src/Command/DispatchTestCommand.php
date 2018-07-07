@@ -1,6 +1,6 @@
 <?php
 
-namespace  Evilnet\QueueJobsBundle\Command;
+namespace Evilnet\QueueJobsBundle\Command;
 
 use Evilnet\QueueJobsBundle\Dispatcher\DispatcherInterface;
 use Evilnet\QueueJobsBundle\ExampleJob\HelloWorld;

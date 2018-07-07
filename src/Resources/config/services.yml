@@ -14,33 +14,34 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
-    jobs.driver.interface:
+
+    queue.driver.interface:
         class: Evilnet\QueueJobsBundle\QueueAdapter\RedisAdapter
         arguments:
             - '%queue_redis_ip%'
             - '%queue_redis_port%'
 
-    jobs.serializer.interface:
+    queue.serializer.interface:
         class: Evilnet\QueueJobsBundle\Dispatcher\Serializers\DefaultSerializer
 
-    jobs.unserializer.interface:
+    queue.unserializer.interface:
         class: Evilnet\QueueJobsBundle\Worker\Unserializers\DefaultUnserializer
 
-    jobs.worker.interface:
+    queue.worker.interface:
         class: Evilnet\QueueJobsBundle\Worker\Worker
         arguments: ['@jobs.driver.interface', '@jobs.unserializer.interface', '@event_dispatcher']
 
-    jobs.dispatcher.interface:
+    queue.dispatcher.interface:
         class: Evilnet\QueueJobsBundle\Dispatcher\Dispatcher
         arguments: ['@jobs.serializer.interface', '@jobs.driver.interface', '%default_queue_name%']
 
-    jobs.command.work_command:
+    queue.command.work_command:
         class: Evilnet\QueueJobsBundle\Command\WorkerCommand
         arguments: ['Evilnet\QueueJobsBundle\Command', '@jobs.worker.interface']
         tags:
             - { name: console.command, command: 'worker:start' }
 
-    jobs.command.dispatch_test_command:
+    queue.command.dispatch_test_command:
         class: Evilnet\QueueJobsBundle\Command\DispatchTestCommand
         arguments: ['Evilnet\QueueJobsBundle\Command', '@jobs.dispatcher.interface']
         tags:

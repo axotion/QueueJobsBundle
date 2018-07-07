@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kamilfronczak
- * Date: 05.07.2018
- * Time: 23:26
- */
 
 namespace  Evilnet\QueueJobsBundle\Dispatcher;
 
@@ -22,7 +16,7 @@ class Dispatcher implements DispatcherInterface
         $this->driver = $driver;
     }
 
-    public function dispatch(DispatchableInterface $dispatchable, string $queue = 'default') : void
+    public function dispatch(DispatchableInterface $dispatchable, string $queue) : void
     {
         $serialized_dispatchable = $this->serializer->serialize($dispatchable);
         $this->driver->push($serialized_dispatchable, $queue);

@@ -2,6 +2,8 @@
 
 namespace Evilnet\QueueJobsBundle\QueueAdapter;
 
+use Evilnet\QueueJobsBundle\QueueAdapter\View\QueueJobView;
+use Evilnet\QueueJobsBundle\QueueAdapter\View\QueueJobViewInterface;
 use Predis\Collection\Iterator;
 use Predis\Client;
 
@@ -16,14 +18,15 @@ class RedisAdapter implements QueueAdapterInterface
             'host'   => $ip,
             'port'   => $port,
         ]);
+
     }
 
-    public function push(string $serialized_dispatchable, string $queue = 'default'): void
+    public function push(string $serialized_dispatchable, string $queue): void
     {
-        $this->client->set($queue.':'.random_int(0,999999999999), $serialized_dispatchable);
+        $this->client->set($queue.':'.uniqid('', true), $serialized_dispatchable);
     }
 
-    public function pop(string $queue = 'default'): ?string
+    public function pull(string $queue): ?QueueJobViewInterface
     {
         $redis_key = null;
         foreach (new Iterator\Keyspace($this->client, $queue.':*') as $key) {
@@ -31,9 +34,22 @@ class RedisAdapter implements QueueAdapterInterface
             break;
         }
 
-        $serialized_job =  $this->client->get($redis_key);
-        $this->client->del($redis_key);
+        if($redis_key === null) {
+            return null;
+        }
 
-        return $serialized_job;
+        $serialized_job = $this->client->get($redis_key);
+        return new QueueJobView($redis_key, $serialized_job);
+    }
+
+    public function isExist(string $identificator): bool
+    {
+        $result = $this->client->get($identificator);
+        return $result !== "" || $result !== null ? true : false;
+    }
+
+    public function delete(string $identificator): void
+    {
+        $this->client->del($identificator);
     }
 }

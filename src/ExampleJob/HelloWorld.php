@@ -2,8 +2,7 @@
 
 namespace Evilnet\QueueJobsBundle\ExampleJob;
 
-
-use Evilnet\Dispatcher\DispatchableInterface;
+use Evilnet\QueueJobsBundle\Dispatcher\DispatchableInterface;
 
 class HelloWorld implements DispatchableInterface
 {
@@ -15,8 +14,9 @@ class HelloWorld implements DispatchableInterface
         $this->test_value = 'Hello from queue!';
     }
 
-    public function execute(): void
+    public function execute(): bool
     {
-        echo $this->test_value;
+        echo $this->test_value."\n";
+        return true;
     }
 }

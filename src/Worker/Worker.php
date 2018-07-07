@@ -10,58 +10,62 @@ namespace Evilnet\QueueJobsBundle\Worker;
 
 use Evilnet\QueueJobsBundle\Dispatcher\DispatchableInterface;
 use Evilnet\QueueJobsBundle\QueueAdapter\QueueAdapterInterface;
+use Evilnet\QueueJobsBundle\QueueAdapter\View\QueueJobViewInterface;
 use Evilnet\QueueJobsBundle\Worker\Unserializers\UnserializeInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
 class Worker implements WorkerInterface
 {
-    protected $driver;
+    protected $adapter;
     protected $unserializer;
     protected $eventDispatcher;
+    protected $currentJob;
 
-    public function __construct(QueueAdapterInterface $driver, UnserializeInterface $unserializer, EventDispatcherInterface $eventDispatcher)
+    public function __construct(QueueAdapterInterface $adapter, UnserializeInterface $unserializer, EventDispatcherInterface $eventDispatcher)
     {
-        $this->driver = $driver;
+        $this->adapter = $adapter;
         $this->unserializer = $unserializer;
         $this->eventDispatcher = $eventDispatcher;
     }
 
-    public function work(string $queue = 'default', int $retry = 1, $retry_serialized_job = null) : void
+    public function process() : bool
     {
-        $serialized_job = $this->driver->pop($queue);
+        $result = $this->currentJob->execute();
 
-        /*
-         *  Probably not ready yet
-         */
-
-        if($serialized_job === null) {
-            return;
+        if($result === false) {
+            $this->eventDispatcher->dispatch('job.failed', new GenericEvent($this->currentJob));
         }
 
-        $unserialized_job = $this->unserializer->unserialize($serialized_job);
-
-        while ($retry > 0) {
-            $is_succed = $this->execute($unserialized_job, $retry, $serialized_job, $queue);
-            if($is_succed) {
-                break;
-            }
-            $retry--;
-        }
-
-        $this->eventDispatcher->dispatch('job.failed', new GenericEvent($unserialized_job));
+        return $result;
     }
 
-    protected function execute(DispatchableInterface $dispatchable, int $retry, string $serialized_job, string $queue) : bool
+    public function getCurrentJob(): DispatchableInterface
     {
-        try {
-            echo "Proccessing: ".get_class($dispatchable)." \n";
-            $dispatchable->execute();
+        if($this->currentJob === null) {
+            throw new \LogicException('Job must be initialized at first');
+        }
+
+        return $this->currentJob;
+    }
+
+    public function isNewJob(string $queue): bool
+    {
+        $queueJobView = $this->adapter->pull($queue);
+
+        if(!$queueJobView instanceof QueueJobViewInterface) {
+            return false;
+        }
+
+        $this->currentJob = $this->unserializer->unserialize($queueJobView->getSerializedJob());
+
+        // Check if time is ok etc
+
+        if($this->adapter->isExist($queueJobView->getIdentificator())) {
+            $this->adapter->delete($queueJobView->getIdentificator());
             return true;
-            // TODO: Universal Exception for Jobs
-        } catch (\ErrorException $errorException) {
-            echo "Job failed... I will try again. Error message: ".$errorException->getMessage()." \n";
         }
-    }
 
+        return false;
+    }
 }

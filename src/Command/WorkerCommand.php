@@ -25,17 +25,22 @@ class WorkerCommand extends Command
             ->setName('worker:start')
             ->setDescription('Start new instance of worker')
             ->addArgument('queue', InputArgument::REQUIRED, 'Queue')
-            ->addArgument('retry', InputArgument::REQUIRED, 'Retry')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         $output->writeln('Worker started on queue: '.$input->getArgument('queue'));
 
         while(true) {
-            $this->worker->work($input->getArgument('queue'), (int)$input->getArgument('retry'));
+            if($this->worker->isNewJob($input->getArgument('queue'))){
+                $output->writeln("Process: ".get_class($this->worker->getCurrentJob()));
+                if($this->worker->process()) {
+                    $output->writeln("Processed: ".get_class($this->worker->getCurrentJob()));
+                } else{
+                    $output->writeln("Failed to procedd: ".get_class($this->worker->getCurrentJob()));
+                }
+            }
             sleep(1);
         }
     }
