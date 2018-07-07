@@ -1,5 +1,5 @@
 {
-  "name" : "evilnet/QueueJobsBundle",
+  "name" : "evilnet/queue-jobs-bundle",
   "description" : "Simple queue system like in Laravel for Symfony",
   "type" : "symfony-bundle",
   "authors" : [{
